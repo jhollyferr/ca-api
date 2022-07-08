@@ -18,8 +18,15 @@
 |
 */
 
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async () => {
-  return { hello: 'world' }
-})
+import './routes/StudentRoute'
+
+Route.group(() => {
+  Route.get('/', async ({ response }: HttpContextContract) => {
+    return response.status(200).json({
+      message: 'Welcome to CA API',
+    })
+  })
+}).prefix('/ca-api')
