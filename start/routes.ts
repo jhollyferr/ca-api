@@ -22,6 +22,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Route from '@ioc:Adonis/Core/Route'
 
 import './routes/StudentRoute'
+import './routes/TeacherRoute'
 
 Route.group(() => {
   Route.get('/', async ({ response }: HttpContextContract) => {
