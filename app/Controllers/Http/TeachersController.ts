@@ -21,15 +21,17 @@ export default class TeachersController {
   }
 
   public async index({ response }: HttpContextContract) {
-    const teachers = await Teacher.all()
+    const teachers = await Teacher.query().preload('classRooms')
 
     return response.status(200).json(teachers)
   }
 
   public async show({ response, params }: HttpContextContract) {
-    const teacher = await Teacher.findBy('registration', params.registration)
+    const teacher = await Teacher.query()
+      .where('registration', params.registration)
+      .preload('classRooms')
 
-    if (!teacher)
+    if (!teacher.length)
       return response.status(404).json({
         message: 'Teacher not found',
       })

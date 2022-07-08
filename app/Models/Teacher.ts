@@ -1,9 +1,13 @@
 import { DateTime } from 'luxon'
-import { BaseModel, beforeCreate, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, beforeCreate, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import { v4 as uuid } from 'uuid'
+import ClassRoom from './ClassRoom'
 
 export default class Teacher extends BaseModel {
   public static selfAssingPrimaryKey = true
+
+  @hasMany(() => ClassRoom)
+  public classRooms: HasMany<typeof ClassRoom>
 
   @column({ isPrimary: true })
   public registration: string
