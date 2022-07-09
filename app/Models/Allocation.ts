@@ -1,25 +1,24 @@
 import { DateTime } from 'luxon'
 import { BaseModel, beforeCreate, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import { v4 as uuid } from 'uuid'
-import Allocation from './Allocation'
 
-export default class Student extends BaseModel {
+export default class Allocation extends BaseModel {
   public static selfAssingPrimaryKey = true
-
-  @hasMany(() => Allocation)
-  public allocations: HasMany<typeof Allocation>
 
   @column({ isPrimary: true })
   public registration: string
 
   @column()
-  public name: string
+  public teacherRegistration: string
 
   @column()
-  public email: string
+  public teacherName: string
 
   @column()
-  public birthdate: string
+  public classRoomRegistration: string
+
+  @column()
+  public studentRegistration: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -28,7 +27,7 @@ export default class Student extends BaseModel {
   public updatedAt: DateTime
 
   @beforeCreate()
-  public static async generateRegistration(student: Student) {
-    student.registration = uuid().substring(0, 8).toUpperCase()
+  public static async generateRegistration(allocation: Allocation) {
+    allocation.registration = uuid().substring(0, 8).toUpperCase()
   }
 }

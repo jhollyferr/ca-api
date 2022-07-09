@@ -34,9 +34,9 @@ export default class ClassRoomsController {
     const classRooms = await ClassRoom.query().where(
       'teacherRegistration',
       params.teacherRegistration
-    )
+    ).preload('allocations')
 
-    if(!classRooms.length)
+    if (!classRooms.length)
       return response.status(404).json({
         message: 'ClassRooms not found',
       })
@@ -60,7 +60,7 @@ export default class ClassRoomsController {
       return response.status(404).json({
         message: 'ClassRoom not found',
       })
-      
+
     return response.status(200).json(classRoom)
   }
 

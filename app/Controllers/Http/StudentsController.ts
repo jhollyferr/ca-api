@@ -70,4 +70,12 @@ export default class StudentsController {
       message: 'Student deleted successfully',
     })
   }
+
+  public async findClasses({ params, response }: HttpContextContract) {
+    const student = await Student.query()
+      .where('registration', params.registration)
+      .preload('allocations')
+
+    return response.status(200).json(student)
+  }
 }
