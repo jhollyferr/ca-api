@@ -44,7 +44,7 @@ An api for allocating students in the classroom
     | DELETE | `{base_url}/students/{registration}` | `{base_url}/teachers/{registration}`|
 
     |          | Classrooms | 
-    |----------|----------|----------|
+    |----------|----------|
     | CREATE|`{base_url}/teachers/{teacher_registration}/classrooms`| 
     | GET | `{base_url}/teachers/{teacher_registration}/classrooms` | 
     | GET | `{base_url}/teachers/{teacher_registration}/classrooms/{classroom_registration}` | 
